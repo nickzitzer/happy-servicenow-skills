@@ -210,6 +210,7 @@ export class SkillValidator {
 
   /**
    * Validate all skills in the skills directory
+   * Supports both old format (skill.md) and new skills.sh format (skill/SKILL.md)
    * @returns {Promise<ValidationResult[]>}
    */
   static async validateAll() {
@@ -220,26 +221,38 @@ export class SkillValidator {
       if (!category.isDirectory()) continue;
 
       const categoryPath = join(SKILLS_DIR, category.name);
-      const files = await readdir(categoryPath);
+      const items = await readdir(categoryPath, { withFileTypes: true });
 
-      for (const file of files) {
-        if (!file.endsWith('.md')) continue;
+      for (const item of items) {
+        let skillPath, fullPath;
 
-        const skillPath = `${category.name}/${file.replace('.md', '')}`;
-        const fullPath = join(categoryPath, file);
+        if (item.isDirectory()) {
+          // New skills.sh format: skill/SKILL.md
+          skillPath = `${category.name}/${item.name}`;
+          fullPath = join(categoryPath, item.name, 'SKILL.md');
+        } else if (item.name.endsWith('.md')) {
+          // Old format: skill.md
+          skillPath = `${category.name}/${item.name.replace('.md', '')}`;
+          fullPath = join(categoryPath, item.name);
+        } else {
+          continue;
+        }
 
         try {
           const content = await readFile(fullPath, 'utf-8');
           const validator = new SkillValidator();
           results.push(validator.validate(content, skillPath));
         } catch (error) {
-          results.push({
-            path: skillPath,
-            valid: false,
-            errors: [`Could not read file: ${error.message}`],
-            warnings: [],
-            summary: '❌ Could not read file'
-          });
+          // Skip if SKILL.md doesn't exist in directory
+          if (error.code !== 'ENOENT') {
+            results.push({
+              path: skillPath,
+              valid: false,
+              errors: [`Could not read file: ${error.message}`],
+              warnings: [],
+              summary: '❌ Could not read file'
+            });
+          }
         }
       }
     }

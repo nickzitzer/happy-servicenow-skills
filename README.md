@@ -1,15 +1,32 @@
-# Happy ServiceNow AI Skills
+<p align="center">
+  <img src="assets/logo.svg" alt="Happy ServiceNow AI Skills" width="120" height="120">
+</p>
 
-> **Platform-agnostic AI skills library for ServiceNow** - Works with Claude, ChatGPT, Cursor, and any agentic AI system.
+<h1 align="center">Happy ServiceNow AI Skills</h1>
 
-[![npm version](https://badge.fury.io/js/@anthropic%2Fhappy-servicenow-skills.svg)](https://www.npmjs.com/package/@anthropic/happy-servicenow-skills)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+<p align="center">
+  <strong>Platform-agnostic AI skills library for ServiceNow</strong><br>
+  Works with Claude Code, Claude Desktop, ChatGPT, Cursor, and any agentic AI system
+</p>
 
-Built by [Happy Technologies LLC](https://github.com/Happy-Technologies-LLC)
+<p align="center">
+  <a href="https://www.npmjs.com/package/happy-servicenow-skills"><img src="https://img.shields.io/npm/v/happy-servicenow-skills.svg?style=flat-square" alt="npm version"></a>
+  <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square" alt="License: MIT"></a>
+  <a href="https://skills.sh"><img src="https://img.shields.io/badge/skills.sh-compatible-blue.svg?style=flat-square" alt="skills.sh"></a>
+  <a href="https://servicenow.com"><img src="https://img.shields.io/badge/ServiceNow-compatible-green.svg?style=flat-square" alt="ServiceNow"></a>
+</p>
+
+<p align="center">
+  <a href="https://happy-tech.biz">Website</a> |
+  <a href="https://github.com/nickzitzer/happy-servicenow-skills">GitHub</a> |
+  <a href="https://www.npmjs.com/package/happy-servicenow-skills">npm</a> |
+  <a href="#-available-skills">Skills</a> |
+  <a href="#-creating-custom-skills">Contributing</a>
+</p>
 
 ---
 
-## 🎯 What Are AI Skills?
+## What Are AI Skills?
 
 **Skills are packaged instructions that teach AI agents how to perform specific tasks.** Unlike MCP tools (which provide *capabilities*), skills provide *knowledge* - the procedures, best practices, and decision logic that make AI agents effective.
 
@@ -18,12 +35,16 @@ MCP = The kitchen and ingredients
 Skills = The recipes
 ```
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Installation
 
 ```bash
-npm install @anthropic/happy-servicenow-skills
+# npm
+npm install happy-servicenow-skills
+
+# skills.sh
+npx skills add nickzitzer/happy-servicenow-skills --all
 ```
 
 ### Usage with Claude Code
@@ -42,7 +63,7 @@ npx sn-skills load itsm/incident-triage
 ### Programmatic Usage
 
 ```javascript
-import { SkillLoader, SkillRegistry } from '@anthropic/happy-servicenow-skills';
+import { SkillLoader, SkillRegistry } from 'happy-servicenow-skills';
 
 // Load all skills
 const registry = new SkillRegistry();
@@ -58,59 +79,93 @@ console.log(skill.instructions);
 
 ---
 
-## 📚 Available Skills
+## Available Skills
 
-### ITSM (IT Service Management)
-
-| Skill | Description |
-|-------|-------------|
-| `itsm/incident-triage` | Intelligent incident triage, prioritization, and assignment |
-| `itsm/incident-lifecycle` | Full incident lifecycle management from creation to closure |
-| `itsm/change-management` | Change request creation, CAB preparation, and implementation |
-| `itsm/problem-analysis` | Root cause analysis and problem record management |
-| `itsm/major-incident` | Major incident coordination and communication |
-
-### CMDB (Configuration Management)
+### ITSM - IT Service Management (7 skills)
 
 | Skill | Description |
 |-------|-------------|
-| `cmdb/ci-discovery` | Configuration item discovery and classification |
-| `cmdb/relationship-mapping` | CI relationship analysis and dependency mapping |
-| `cmdb/impact-analysis` | Change impact analysis using CMDB relationships |
+| `itsm/incident-triage` | Automated incident classification and prioritization |
+| `itsm/incident-lifecycle` | End-to-end incident management workflow |
+| `itsm/major-incident` | P1/Major incident coordination |
+| `itsm/problem-analysis` | Root cause analysis and known error management |
+| `itsm/change-management` | RFC creation, CAB, implementation, PIR |
+| `itsm/natural-language-queries` | Plain English ServiceNow searches |
+| `itsm/quick-reference` | Common operations cheat sheet |
 
-### Administration
-
-| Skill | Description |
-|-------|-------------|
-| `admin/update-set-management` | Update set creation, management, and deployment |
-| `admin/deployment-workflow` | Instance-to-instance deployment procedures |
-| `admin/user-provisioning` | User account and role management |
-| `admin/acl-management` | Access control list creation and troubleshooting |
-
-### Service Catalog
+### Development (12 skills)
 
 | Skill | Description |
 |-------|-------------|
-| `catalog/request-fulfillment` | Catalog request processing and fulfillment |
-| `catalog/item-creation` | Service catalog item design and implementation |
+| `development/business-rules` | Server-side automation scripts |
+| `development/client-scripts` | Form manipulation and validation |
+| `development/script-includes` | Reusable server-side libraries |
+| `development/glide-api-reference` | GlideRecord, GlideAggregate, GlideDateTime |
+| `development/debugging-techniques` | Script debugger, logging, troubleshooting |
+| `development/notifications` | Email notifications, events, templates |
+| `development/ui-actions` | Buttons, context menus, client/server actions |
+| `development/scheduled-jobs` | Automated recurring tasks |
+| `development/data-import` | Import sets and transform maps |
+| `development/scripted-rest-apis` | Custom REST endpoints |
+| `development/automated-testing` | ATF and script testing |
+| `development/performance-optimization` | Script optimization techniques |
 
-### Security
+### Administration (12 skills)
 
 | Skill | Description |
 |-------|-------------|
-| `security/incident-response` | Security incident detection and response |
-| `security/audit-compliance` | Audit log analysis and compliance verification |
+| `admin/update-set-management` | Configuration tracking and deployment |
+| `admin/deployment-workflow` | Instance-to-instance migration |
+| `admin/batch-operations` | Bulk record operations |
+| `admin/script-execution` | Background script patterns |
+| `admin/script-sync` | Local development workflow |
+| `admin/user-provisioning` | User lifecycle management |
+| `admin/workflow-creation` | Programmatic workflow building |
+| `admin/schema-discovery` | Table and field exploration |
+| `admin/instance-management` | Multi-instance operations |
+| `admin/application-scope` | Scoped app development |
+| `admin/configuration-validation` | Catalog item validation |
+| `admin/generic-crud-operations` | Universal table operations |
 
-### Reporting
+### Service Catalog (5 skills)
 
 | Skill | Description |
 |-------|-------------|
-| `reporting/sla-analysis` | SLA performance analysis and reporting |
-| `reporting/executive-dashboard` | Executive-level metrics and KPI generation |
+| `catalog/request-fulfillment` | End-to-end request processing |
+| `catalog/item-creation` | Catalog item setup |
+| `catalog/approval-workflows` | Approval configuration |
+| `catalog/variable-management` | Form variables and options |
+| `catalog/ui-policies` | Dynamic form behavior |
+
+### CMDB (4 skills)
+
+| Skill | Description |
+|-------|-------------|
+| `cmdb/ci-discovery` | Configuration item management |
+| `cmdb/relationship-mapping` | CI relationships and dependencies |
+| `cmdb/impact-analysis` | Service impact assessment |
+| `cmdb/data-quality` | CMDB health and validation |
+
+### Security (4 skills)
+
+| Skill | Description |
+|-------|-------------|
+| `security/incident-response` | Security incident handling |
+| `security/acl-management` | Access control configuration |
+| `security/audit-compliance` | Compliance monitoring |
+| `security/data-classification` | Data sensitivity management |
+
+### Reporting (3 skills)
+
+| Skill | Description |
+|-------|-------------|
+| `reporting/sla-analysis` | SLA performance metrics |
+| `reporting/executive-dashboard` | KPI dashboards |
+| `reporting/trend-analysis` | Historical trend reporting |
 
 ---
 
-## 🔧 Skill Anatomy
+## Skill Anatomy
 
 Each skill is a Markdown file with YAML frontmatter:
 
@@ -121,7 +176,7 @@ version: 1.0.0
 description: Intelligent incident triage and assignment
 author: Happy Technologies LLC
 tags: [itsm, incident, triage, assignment]
-platforms: [claude, chatgpt, cursor, any]
+platforms: [claude-code, claude-desktop, chatgpt, cursor, any]
 tools:
   mcp: [SN-Query-Table, SN-NL-Search, SN-Assign-Incident]
   rest: [/api/now/table/incident, /api/now/table/sys_user_group]
@@ -153,7 +208,7 @@ estimated_time: 5-15 minutes
 
 ---
 
-## 🌐 Platform Compatibility
+## Platform Compatibility
 
 Skills are designed to work across multiple AI platforms:
 
@@ -167,9 +222,9 @@ Skills are designed to work across multiple AI platforms:
 
 ---
 
-## 🤝 Integration with ServiceNow MCP Server
+## Integration with ServiceNow MCP Server
 
-These skills are designed to complement the [ServiceNow MCP Server](https://github.com/Happy-Technologies-LLC/mcp-servicenow-nodejs):
+These skills are designed to complement the [ServiceNow MCP Server](https://github.com/nickzitzer/mcp-servicenow-nodejs):
 
 ```javascript
 // When MCP tools are available, skills reference them directly
@@ -182,7 +237,7 @@ These skills are designed to complement the [ServiceNow MCP Server](https://gith
 
 ---
 
-## 📝 Creating Custom Skills
+## Creating Custom Skills
 
 ### Quick Start
 
@@ -210,22 +265,31 @@ See [docs/SKILL_SPEC.md](docs/SKILL_SPEC.md) for the complete skill specificatio
 
 ---
 
-## 📊 Statistics
+## Statistics
 
-- **Total Skills:** 20+
-- **Categories:** 6 (ITSM, CMDB, Admin, Catalog, Security, Reporting)
-- **Platforms Supported:** 5+
-- **Community Contributors:** Growing!
+| Metric | Value |
+|--------|-------|
+| **Total Skills** | 47 |
+| **Categories** | 7 |
+| **Platforms Supported** | 5+ |
+| **MCP Tool References** | 40+ |
 
 ---
 
-## 📄 License
+## Related Projects
+
+- **[ServiceNow MCP Server](https://github.com/nickzitzer/mcp-servicenow-nodejs)** - MCP server providing 40+ tools for ServiceNow automation
+- **[Happy Technologies](https://happy-tech.biz)** - Enterprise AI solutions
+
+---
+
+## License
 
 MIT License - see [LICENSE](LICENSE) for details.
 
 ---
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - [Anthropic](https://anthropic.com) for Claude and MCP
 - [ServiceNow](https://servicenow.com) for the platform
@@ -233,4 +297,6 @@ MIT License - see [LICENSE](LICENSE) for details.
 
 ---
 
-**Built with ❤️ by [Happy Technologies LLC](https://github.com/Happy-Technologies-LLC)**
+<p align="center">
+  Built with care by <a href="https://happy-tech.biz">Happy Technologies LLC</a>
+</p>
