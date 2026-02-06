@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/logo.svg" alt="Happy ServiceNow AI Skills" width="120" height="120">
+  <img src="https://happy-tech.biz/images/logo.svg" alt="Happy ServiceNow AI Skills" width="120" height="120">
 </p>
 
 <h1 align="center">Happy ServiceNow AI Skills</h1>
